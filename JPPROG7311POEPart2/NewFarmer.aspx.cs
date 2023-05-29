@@ -24,8 +24,12 @@ namespace JPPROG7311POEPart2
       /// <param name="e"></param>
       protected void Page_Load(object sender, EventArgs e)
       {
+         //if not logged redirect to loginpage
          if (_ToolBox._ActiveUserClass.UserID1 == -1 & _ToolBox.ForceLogin)
             Page.Response.Redirect("~/LoginPage");
+         //if not correct usre type redirect to home page
+         if (_ToolBox._ActiveUserClass.UserType1 != "Employee" & _ToolBox.ForceLogin)
+            Page.Response.Redirect("~/");
       }
 
       //-------------------------------------------------------------------------------------------

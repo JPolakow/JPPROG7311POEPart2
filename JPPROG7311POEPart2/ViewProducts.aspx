@@ -11,20 +11,28 @@
 
       <div class="filter-container">
          <div class="filter-row">
-            <label for="txtTimeFilter">Filter by Time:</label>
-            <asp:TextBox ID="txtTimeFilter" runat="server" CssClass="auto-style1" Width="350px" placeholder="Filter by Time"></asp:TextBox>
+            <label for="txtStartDate">Start Date:</label>
+            <asp:TextBox ID="txtStartDate" TextMode="Date" runat="server" CssClass="auto-style1" Width="250px" placeholder="Start Date"></asp:TextBox>
          </div>
          <div class="filter-row">
-            <label for="txtUserFilter">Filter by User:</label>
-            <asp:TextBox ID="txtUserFilter" runat="server" CssClass="auto-style1" Width="350px" placeholder="Filter by User"></asp:TextBox>
+            <label for="txtEndDate">End Date:</label>
+            <asp:TextBox ID="txtEndDate" TextMode="Date" runat="server" CssClass="auto-style1" Width="250px" placeholder="End Date"></asp:TextBox>
+         </div>
+         <div class="filter-row">
+            <label for="txtFarmerFilter">Filter by Farmer:</label>
+            <asp:TextBox ID="txtFarmerFilter" runat="server" CssClass="auto-style1" Width="250px" placeholder="Filter by Farmer"></asp:TextBox>
+         </div>
+         <div class="filter-row">
+            <label for="txtProductFilter">Filter by Product:</label>
+            <asp:TextBox ID="txtProductFilter" runat="server" CssClass="auto-style1" Width="250px" placeholder="Filter by product"></asp:TextBox>
          </div>
 
          <div class="filter-row">
-            <label for="txtUserFilter" class="invisible-label">hidden</label>
+            <label for="btnFilter" class="invisible-label">hidden</label>
             <asp:Button ID="btnFilter" runat="server" Text="Apply Filters" OnClick="btnAddFilters_Click" CssClass="btn btn-primary" CausesValidation="true" Height="40px" Width="115px" />
          </div>
          <div class="filter-row">
-            <label for="txtUserFilter" class="invisible-label">hidden</label>
+            <label for="btnClear" class="invisible-label">hidden</label>
             <asp:Button ID="btnClear" runat="server" Text="Clear Filters" OnClick="btnClearFilters_Click" CssClass="btn btn-primary" CausesValidation="true" Height="40px" Width="115px" />
          </div>
       </div>

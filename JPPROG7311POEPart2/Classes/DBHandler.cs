@@ -11,8 +11,11 @@ using System.Configuration.Provider;
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web;
+using System.Xml.Linq;
 
 namespace JPPROG7311POEPart2.Classes
 {
@@ -319,11 +322,43 @@ namespace JPPROG7311POEPart2.Classes
 
       //-------------------------------------------------------------------------------------------
       /// <summary>
+      /// method to build the sql query string
+      /// </summary>
+      /// <param name="startDate"></param>
+      /// <param name="EndDate"></param>
+      /// <param name="farmerName"></param>
+      /// <param name="productName"></param>
+      /// <param name="Farmer"></param>
+      /// <param name="Product"></param>
+      /// <param name="Start"></param>
+      /// <param name="End"></param>
+      /// <returns></returns>
+      public DataTable StringBuilder(bool startDate, bool EndDate, bool farmerName, bool productName, string Farmer, string Product, string Start, string End)
+      {
+         string Query = "SELECT P.ProductName, P.ProductDescription, p.DateAdded, p.QauntityAdded, (f.FName + ' ' + f.SName) \"Full Name\", f.PhoneNumber, f.\"Location\" " +
+            "FROM Farmer F, Product P, FarmerProductList FP " +
+            "WHERE (FP.FarmerID = F.FarmerId) AND (FP.ProductID = P.ProductID) ";
+
+         if (farmerName)
+            Query = Query + " AND (F.FName LIKE '%" + Farmer + "%' OR F.SName LIKE '%" + Farmer + "%')";
+
+         if (productName)
+            Query = Query + " AND (P.ProductName LIKE '%" + Product + "%')";
+
+         if (startDate && EndDate)
+            Query = Query + " AND P.DateAdded >= '" + Start + "' AND P.DateAdded <='" + End + "'";
+
+         return FilterProducts(Query);
+
+      }
+
+      //-------------------------------------------------------------------------------------------
+      /// <summary>
       /// method filtyers the tables to just show records where the farmers names contain a string
       /// </summary>
       /// <param name="Name"></param>
       /// <returns></returns>
-      public DataTable FilterFarmerName(string Name)
+      public DataTable FilterProducts(string query)
       {
          this.ConnectDB();
 
@@ -333,7 +368,7 @@ namespace JPPROG7311POEPart2.Classes
             {
                Connection = this.Connection,
                CommandType = CommandType.Text,
-               CommandText = "SELECT P.ProductName, P.ProductDescription, p.DateAdded, p.QauntityAdded, (f.FName + ' ' + f.SName) \"Full Name\", f.PhoneNumber, f.\"Location\" FROM Farmer F, Product P, FarmerProductList FP WHERE (FP.FarmerID = F.FarmerId) AND (FP.ProductID = P.ProductID) AND (F.FName LIKE '%" + Name + "%' OR F.SName LIKE '%" + Name + "%')"
+               CommandText = query
             };
 
             var adapter = new SqlDataAdapter(sqlCmd);
@@ -351,6 +386,9 @@ namespace JPPROG7311POEPart2.Classes
             this.Connection.Close();
          }
       }
+
+
+
    }
 }
 //==========================================END OF FILE============================================

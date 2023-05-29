@@ -15,22 +15,40 @@ namespace JPPROG7311POEPart2
    {
 
       /// <summary>
-      /// txtTimeFilter control.
+      /// txtStartDate control.
       /// </summary>
       /// <remarks>
       /// Auto-generated field.
       /// To modify move field declaration from designer file to code-behind file.
       /// </remarks>
-      protected global::System.Web.UI.WebControls.TextBox txtTimeFilter;
+      protected global::System.Web.UI.WebControls.TextBox txtStartDate;
 
       /// <summary>
-      /// txtUserFilter control.
+      /// txtEndDate control.
       /// </summary>
       /// <remarks>
       /// Auto-generated field.
       /// To modify move field declaration from designer file to code-behind file.
       /// </remarks>
-      protected global::System.Web.UI.WebControls.TextBox txtUserFilter;
+      protected global::System.Web.UI.WebControls.TextBox txtEndDate;
+
+      /// <summary>
+      /// txtFarmerFilter control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.WebControls.TextBox txtFarmerFilter;
+
+      /// <summary>
+      /// txtProductFilter control.
+      /// </summary>
+      /// <remarks>
+      /// Auto-generated field.
+      /// To modify move field declaration from designer file to code-behind file.
+      /// </remarks>
+      protected global::System.Web.UI.WebControls.TextBox txtProductFilter;
 
       /// <summary>
       /// btnFilter control.
