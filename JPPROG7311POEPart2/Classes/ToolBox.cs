@@ -11,6 +11,7 @@ namespace JPPROG7311POEPart2.Classes
 {
    public class ToolBox
    {
+      //ensure only one instance is created, thus keeping the data
       private static readonly ToolBox instance = new ToolBox();
       public static ToolBox Instance => instance;
       

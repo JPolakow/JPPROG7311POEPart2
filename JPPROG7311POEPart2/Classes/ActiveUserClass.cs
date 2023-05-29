@@ -10,6 +10,7 @@ namespace JPPROG7311POEPart2.Classes
 {
    public class ActiveUserClass
    {
+      //ensure only one instance is created, thus keeping the data
       private static readonly ActiveUserClass instance = new ActiveUserClass();
       public static ActiveUserClass Instance => instance;
 

@@ -11,6 +11,7 @@ namespace JPPROG7311POEPart2.Objects
 {
    public class UserLoginShuttle
    {
+      //ensure only one instance is created, thus keeping the data
       private static readonly UserLoginShuttle instance = new UserLoginShuttle();
       public static UserLoginShuttle Instance => instance;
 

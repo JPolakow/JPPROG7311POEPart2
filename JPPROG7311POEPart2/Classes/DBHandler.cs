@@ -21,6 +21,7 @@ namespace JPPROG7311POEPart2.Classes
 {
    public class DBHandler
    {
+      //ensure only one instance is created, thus keeping the data
       private static readonly DBHandler instance = new DBHandler();
       public static DBHandler Instance => instance;
 
@@ -32,17 +33,17 @@ namespace JPPROG7311POEPart2.Classes
       /// <summary>
       ///     SQL Command
       /// </summary>
-      private SqlCommand Command;
+      private SqlCommand command;
 
       /// <summary>
       ///     SQL Connection
       /// </summary>
-      private SqlConnection Connection;
+      private SqlConnection connection;
 
       /// <summary>
       ///     Object For Using Entity Framework;
       /// </summary>
-      private ST10081881PROG7311POETask2Entities1 Entity;
+      private ST10081881PROG7311POETask2Entities1 entity;
 
 
 
@@ -52,16 +53,16 @@ namespace JPPROG7311POEPart2.Classes
       /// </summary>
       private void ConnectDB()
       {
-         this.Connection = new SqlConnection();
-         this.Command = new SqlCommand();
+         this.connection = new SqlConnection();
+         this.command = new SqlCommand();
 
          // this.Connection.ConnectionString =
          //     "data source=(LocalDB)\\MSSQLLocalDB;attachdbfilename=|DataDirectory|\\ST10081881PROG7311POETask2.mdf;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
 
-         this.Connection.ConnectionString = ConnectionString;
+         this.connection.ConnectionString = ConnectionString;
 
-         this.Command.Connection = this.Connection;
-         this.Command.CommandType = CommandType.Text;
+         this.command.Connection = this.connection;
+         this.command.CommandType = CommandType.Text;
       }
 
 
@@ -81,21 +82,21 @@ namespace JPPROG7311POEPart2.Classes
 
          try
          {
-            using (this.Entity = new ST10081881PROG7311POETask2Entities1())
+            using (this.entity = new ST10081881PROG7311POETask2Entities1())
             {
                //check if employee
-               Employee EmployeeCheck = Entity.Employees.FirstOrDefault(e => string.Compare(e.Email, UserEmail, true) == 0);
+               Employee EmployeeCheck = entity.Employees.FirstOrDefault(e => e.Email.Equals(UserEmail, StringComparison.OrdinalIgnoreCase));
 
                //if employee save logincredentials
                if (EmployeeCheck != null)
-                  login = this.Entity.LoginCredentials.Find(EmployeeCheck.LoginID);
+                  login = this.entity.LoginCredentials.Find(EmployeeCheck.LoginID);
 
                //check if farmer
-               Farmer FarmerCheck = Entity.Farmers.FirstOrDefault(e => string.Compare(e.Email, UserEmail, true) == 0);
+               Farmer FarmerCheck = entity.Farmers.FirstOrDefault(f => f.Email.Equals(UserEmail, StringComparison.OrdinalIgnoreCase));
 
                //if farmer save logincredentials
                if (FarmerCheck != null)
-                  login = this.Entity.LoginCredentials.Find(FarmerCheck.LoginID);
+                  login = this.entity.LoginCredentials.Find(FarmerCheck.LoginID);
 
                return login;
             }
@@ -120,10 +121,10 @@ namespace JPPROG7311POEPart2.Classes
 
          try
          {
-            using (this.Entity = new ST10081881PROG7311POETask2Entities1())
+            using (this.entity = new ST10081881PROG7311POETask2Entities1())
             {
                //check if emplyee
-               Employee EmployeeCheck = Entity.Employees.FirstOrDefault(e => e.Email.Equals(UserEmail, StringComparison.OrdinalIgnoreCase));
+               Employee EmployeeCheck = entity.Employees.FirstOrDefault(e => e.Email.Equals(UserEmail, StringComparison.OrdinalIgnoreCase));
 
                if (EmployeeCheck != null)
                {
@@ -132,7 +133,7 @@ namespace JPPROG7311POEPart2.Classes
                }
 
                //check if farmer
-               Farmer FarmerCheck = Entity.Farmers.FirstOrDefault(f => f.Email.Equals(UserEmail, StringComparison.OrdinalIgnoreCase));
+               Farmer FarmerCheck = entity.Farmers.FirstOrDefault(f => f.Email.Equals(UserEmail, StringComparison.OrdinalIgnoreCase));
 
                if (FarmerCheck != null)
                {
@@ -160,14 +161,14 @@ namespace JPPROG7311POEPart2.Classes
       {
          try
          {
-            using (this.Entity = new ST10081881PROG7311POETask2Entities1())
+            using (this.entity = new ST10081881PROG7311POETask2Entities1())
             {
-               Employee EmployeeCheck = Entity.Employees.FirstOrDefault(e => e.Email.Equals(UserEmail, StringComparison.OrdinalIgnoreCase));
+               Employee EmployeeCheck = entity.Employees.FirstOrDefault(e => e.Email.Equals(UserEmail, StringComparison.OrdinalIgnoreCase));
 
                if (EmployeeCheck != null)
                   return true;
 
-               Farmer FarmerCheck = Entity.Farmers.FirstOrDefault(f => f.Email.Equals(UserEmail, StringComparison.OrdinalIgnoreCase));
+               Farmer FarmerCheck = entity.Farmers.FirstOrDefault(f => f.Email.Equals(UserEmail, StringComparison.OrdinalIgnoreCase));
 
                if (FarmerCheck != null)
                   return true;
@@ -299,7 +300,7 @@ namespace JPPROG7311POEPart2.Classes
          {
             var sqlCmd = new SqlCommand
             {
-               Connection = this.Connection,
+               Connection = this.connection,
                CommandType = CommandType.Text,
                CommandText = "SELECT P.ProductName, P.ProductDescription, p.DateAdded, p.QauntityAdded, (f.FName + ' ' + f.SName) \"Full Name\", f.PhoneNumber, f.\"Location\" FROM Farmer F, Product P, FarmerProductList FP WHERE (FP.FarmerID = F.FarmerId) AND (FP.ProductID = P.ProductID)"
             };
@@ -316,7 +317,7 @@ namespace JPPROG7311POEPart2.Classes
 
          finally
          {
-            this.Connection.Close();
+            this.connection.Close();
          }
       }
 
@@ -366,7 +367,7 @@ namespace JPPROG7311POEPart2.Classes
          {
             var sqlCmd = new SqlCommand
             {
-               Connection = this.Connection,
+               Connection = this.connection,
                CommandType = CommandType.Text,
                CommandText = query
             };
@@ -383,7 +384,7 @@ namespace JPPROG7311POEPart2.Classes
 
          finally
          {
-            this.Connection.Close();
+            this.connection.Close();
          }
       }
 
