@@ -51,6 +51,7 @@ namespace JPPROG7311POEPart2
       {
          try
          {
+            //if the email exists prevent adding of the account
             if (_ToolBox._DBHandler.DoesEmailExist(txtEmail.Text))
             {
                popupFailure.Visible = true;
@@ -58,9 +59,11 @@ namespace JPPROG7311POEPart2
                return;
             }
 
+            //create LoginCredential entry using hash and salt
             LoginCredential newUserLogin = _ToolBox._PasswordHandler.CreateNewPassword(txtPassword.Text);
             int loginAdded = _ToolBox._DBHandler.AddFarmerLogin(newUserLogin);
 
+            //if login added then create object and send to be added
             if (loginAdded != -1)
             {
                Farmer newFarmer = new Farmer();

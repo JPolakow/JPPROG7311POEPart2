@@ -17,6 +17,8 @@ namespace JPPROG7311POEPart2
    public partial class ViewProducts : System.Web.UI.Page
    {
       public ToolBox _ToolBox = ToolBox.Instance;
+
+      //stores the filtering options
       bool startDate, EndDate, farmerName, productName = false;
 
       //-------------------------------------------------------------------------------------------
@@ -50,7 +52,7 @@ namespace JPPROG7311POEPart2
 
       //-------------------------------------------------------------------------------------------
       /// <summary>
-      /// button
+      /// button to reset filters
       /// </summary>
       /// <param name="sender"></param>
       /// <param name="e"></param>
@@ -66,6 +68,7 @@ namespace JPPROG7311POEPart2
       /// </summary>
       private void LoadFilters()
       {
+         //setting vars to enable filtering
          if (txtStartDate.Text != string.Empty)
             startDate = true;
          if (txtEndDate.Text != string.Empty)

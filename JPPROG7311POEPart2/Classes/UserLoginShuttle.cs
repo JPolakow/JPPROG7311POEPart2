@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+//class is used to move user data involved in the login around
 namespace JPPROG7311POEPart2.Objects
 {
    public class UserLoginShuttle

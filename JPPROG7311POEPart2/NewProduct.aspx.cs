@@ -62,9 +62,10 @@ namespace JPPROG7311POEPart2
 
             int ProductAdded = _ToolBox._DBHandler.AddProduct(newProduct);
 
+            //if product added
             if (ProductAdded != -1)
             {
-
+               //create link between farmer and product
                FarmerProductList farmerProductList = new FarmerProductList();
                farmerProductList.ProductID = ProductAdded;
                farmerProductList.FarmerID = _ToolBox._ActiveUserClass.UserID1;

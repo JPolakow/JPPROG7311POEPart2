@@ -47,7 +47,7 @@ namespace JPPROG7311POEPart2
       {
          try
          {
-            //used to shuttle the users deatisl around
+            //used to shuttle the users details around
             UserLoginShuttle userLogin = new UserLoginShuttle();
             userLogin.UserEmail1 = txtEmail.Text;
             userLogin.UserPlainPword1 = txtPassword.Text;
