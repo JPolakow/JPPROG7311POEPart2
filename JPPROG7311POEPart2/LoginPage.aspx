@@ -29,5 +29,13 @@
       <div id="popupFailure" class="alert alert-dismissible alert-danger" runat="server" visible="false">
          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
       </div>
+
+      <style>
+         body {
+            background-image: url('Resources/farm3.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+         }
+      </style>
    </div>
 </asp:Content>

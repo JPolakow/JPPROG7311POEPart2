@@ -37,11 +37,17 @@
 
       <h3></h3>
 
-      <asp:GridView ID="myGridView" runat="server" AutoGenerateColumns="true" CssClass="custom-gridview">
+      <asp:GridView ID="myGridView" runat="server">
       </asp:GridView>
 
 
       <style>
+          body {
+            background-image: url('Resources/farm2.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+         }
+
          .invisible-label {
             color: transparent;
          }

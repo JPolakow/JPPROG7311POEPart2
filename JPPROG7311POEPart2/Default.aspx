@@ -7,4 +7,13 @@
          <p class="lead">This is a prototype of a Farm Shop website. Some features are not included.</p>
       </section>
    </main>
+
+    <style>
+         body {
+            background-image: url('Resources/farm4.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+         }
+      </style>
+
 </asp:Content>

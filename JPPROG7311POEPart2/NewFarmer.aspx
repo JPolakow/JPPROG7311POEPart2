@@ -68,5 +68,13 @@
          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
       </div>
 
+        <style>
+         body {
+            background-image: url('Resources/farm2.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+         }
+      </style>
+
    </div>
 </asp:Content>

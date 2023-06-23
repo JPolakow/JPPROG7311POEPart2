@@ -238,7 +238,7 @@ namespace JPPROG7311POEPart2.Classes
 
       //-------------------------------------------------------------------------------------------
       /// <summary>
-      /// method to add new farmer, returns bool
+      /// method to add new farmer, returns int = new entry id
       /// </summary>
       /// <param name="newFarmer"></param>
       /// <returns></returns>
